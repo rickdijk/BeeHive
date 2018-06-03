@@ -27,7 +27,7 @@ namespace BeeHive
 
         private void assignJobButton_Click(object sender, EventArgs e)
         {
-            AssignWork();
+            bool AssignWork();
         }
 
         private void nextShift_Click(object sender, EventArgs e)

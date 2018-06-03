@@ -101,11 +101,12 @@
             // 
             // nextShift
             // 
+            this.nextShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nextShift.Location = new System.Drawing.Point(386, 16);
             this.nextShift.Name = "nextShift";
             this.nextShift.Size = new System.Drawing.Size(158, 122);
             this.nextShift.TabIndex = 6;
-            this.nextShift.Text = "button1";
+            this.nextShift.Text = "Work the next shift";
             this.nextShift.UseVisualStyleBackColor = true;
             this.nextShift.Click += new System.EventHandler(this.nextShift_Click);
             // 
