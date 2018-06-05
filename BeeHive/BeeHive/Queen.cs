@@ -19,18 +19,18 @@ namespace BeeHive
 
         public bool AssignWork(string jobToBeDone, int amountOfShifts)
         {
-            for (int i = 0; i < workers.Length; i++)
+            foreach (Worker worker in workers)
             {
-                if(workers[i].DoThisJob)
-                {
-
-                }
+                if (!worker.DoThisJob(jobToBeDone, amountOfShifts))
+                    continue;
+                return worker.DoThisJob(jobToBeDone, amountOfShifts);
             }
+            return false;
         }
 
         public string WorkTheNextShift()
         {
-
+            if (String.IsNullOrEmpty) ;
         }
 
 

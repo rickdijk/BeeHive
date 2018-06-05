@@ -27,7 +27,10 @@ namespace BeeHive
 
         private void assignJobButton_Click(object sender, EventArgs e)
         {
-            bool AssignWork();
+            string doThisJob;
+            int numberOfShifts;
+            Queen.AssignWork(doThisJob, numberOfShifts);
+            jobToBeDone = workerBeeJob.ValueMember;
         }
 
         private void nextShift_Click(object sender, EventArgs e)
