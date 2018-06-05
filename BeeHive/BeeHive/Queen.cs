@@ -10,17 +10,21 @@ namespace BeeHive
     class Queen
     {
         private Worker[] workers;
+        private int shiftNumber = 0;
 
         public Queen(Worker[] workers)
         {
-
+            this.workers = workers;
         }
 
         public bool AssignWork(string jobToBeDone, int amountOfShifts)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < workers.Length; i++)
             {
-                Worker[i];
+                if(workers[i].DoThisJob)
+                {
+
+                }
             }
         }
 
@@ -28,5 +32,7 @@ namespace BeeHive
         {
 
         }
+
+
     }
 }
