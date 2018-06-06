@@ -28,9 +28,37 @@ namespace BeeHive
             return false;
         }
 
-        public string WorkTheNextShift()
+        public string WorkTheNextShift(int shiftNumber)
         {
-            if (String.IsNullOrEmpty) ;
+            this.shiftNumber = shiftNumber;
+            string shiftReport = $"Report for shift #{shiftNumber}";
+            for (int i = 0; i < workers.Length; i++)
+            {
+                int workerIndex = i + 1;
+                if (workers[i].DidYouFinish())
+                {
+                    shiftReport += $"\r\n Worker #{workerIndex} finished the job";
+                }
+
+                if (!String.IsNullOrEmpty(workers[i].CurrentJob))
+                {
+                    if (workers[i].ShiftsLeft == 1)
+                    {
+                        shiftReport += $"\r\n Worker #{workerIndex} will be done with '{workers[i].CurrentJob}' " +
+                            "after this shift";
+                    }
+                    else
+                    {
+                        shiftReport += $"\r\n Worker #{workerIndex} is doing '{workers[i].CurrentJob}' " +
+                            $"for {workers[i].ShiftsLeft} more shifts";
+                    }
+                }
+                else
+                {
+                    shiftReport += $"\r\n Worker #{workerIndex} is not working";
+                }
+            }
+            return shiftReport;
         }
 
 

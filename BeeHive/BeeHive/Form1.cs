@@ -22,20 +22,19 @@ namespace BeeHive
             workers[2] = new Worker(new string[] { "Hive maintenance", "Sting patrol" });
             workers[3] = new Worker(new string[] { "Nectar collector", "Honey manufacturing",
                             "Egg care", "Baby bee tutoring", "Hive maintenance", "Sting patrol" });
-            queen = new Queen(workers);
+            Queen queen = new Queen(workers);
         }
 
         private void assignJobButton_Click(object sender, EventArgs e)
         {
-            string doThisJob;
-            int numberOfShifts;
-            Queen.AssignWork(doThisJob, numberOfShifts);
-            jobToBeDone = workerBeeJob.ValueMember;
+            string doThisJob = workerBeeJob.ValueMember;
+            int numberOfShifts = Decimal.ToInt32(shifts.Value);
+            queen.AssignWork(doThisJob, numberOfShifts);
         }
 
         private void nextShift_Click(object sender, EventArgs e)
         {
-            WorkTheNextShift();
+            queen.WorkTheNextShift();
         }
     }
 }
