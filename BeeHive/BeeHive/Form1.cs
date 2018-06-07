@@ -12,6 +12,9 @@ namespace BeeHive
 {
     public partial class Form1 : Form
     {
+        Queen queen;
+        int thisShift = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -34,7 +37,7 @@ namespace BeeHive
 
         private void nextShift_Click(object sender, EventArgs e)
         {
-            queen.WorkTheNextShift();
+            queen.WorkTheNextShift(thisShift + 1);
         }
     }
 }
