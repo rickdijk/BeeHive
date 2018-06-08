@@ -9,10 +9,9 @@ namespace BeeHive
 {
     class Queen : Bee
     {
-        public Queen(Worker[] workers)
+        public Queen(Worker[] workers, double weightMg)
             : base(weightMg)
         {
-            weightMg = 275;
             this.workers = workers;
         }
 
@@ -29,10 +28,14 @@ namespace BeeHive
 
         public string WorkTheNextShift()
         {
+            double honeyConsumed = HoneyConsumptionRate();
+
             shiftNumber++;
             string shiftReport = $"Report for shift #{shiftNumber}" + "\r\n";
             for (int i = 0; i < workers.Length; i++)
             {
+                honeyConsumed += workers[i].HoneyConsumptionRate();
+
                 if (workers[i].DidYouFinish())
                 {
                     shiftReport += $"Worker #{i + 1} finished the job" + "\r\n";
@@ -56,6 +59,9 @@ namespace BeeHive
                 }
                     
             }
+
+            shiftReport += $"Total honey consumed for the shift: {honeyConsumed} units\r\n";
+
             return shiftReport;
         }
 

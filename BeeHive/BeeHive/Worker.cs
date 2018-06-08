@@ -9,9 +9,20 @@ namespace BeeHive
 {
     class Worker : Bee
     {
-        public Worker(string[] jobsICanDo)
+        public Worker(string[] jobsICanDo, double weightMg)
+            : base(weightMg)
         {
             this.jobsICanDo = jobsICanDo;
+        }
+
+        const double honeyUnitsPerShiftWorked = .65;
+
+        public override double HoneyConsumptionRate()
+        {
+            double consumption = base.HoneyConsumptionRate();
+
+            consumption += shiftsWorked * honeyUnitsPerShiftWorked;
+            return consumption;
         }
 
         public int ShiftsLeft { get { return shiftsToWork - shiftsWorked; } }
@@ -54,11 +65,6 @@ namespace BeeHive
             }
             else
                 return false;
-        }
-
-        override public double HoneyConsumptionRate()
-        {
-
         }
     }
 }
