@@ -7,56 +7,54 @@ using System.Windows.Forms;
 
 namespace BeeHive
 {
-    class Queen
+    class Queen : Bee
     {
-        private Worker[] workers;
-        private int shiftNumber = 0;
-
         public Queen(Worker[] workers)
+            : base(weightMg)
         {
+            weightMg = 275;
             this.workers = workers;
         }
 
-        public bool AssignWork(string jobToBeDone, int amountOfShifts)
+        private Worker[] workers;
+        private int shiftNumber = 0;
+
+        public bool AssignWork(string job, int numberOfShifts)
         {
-            foreach (Worker worker in workers)
-            {
-                if (!worker.DoThisJob(jobToBeDone, amountOfShifts))
-                    continue;
-                return worker.DoThisJob(jobToBeDone, amountOfShifts);
-            }
+            for (int i = 0; i < workers.Length; i++)
+                if (workers[i].DoThisJob(job, numberOfShifts))
+                    return true;
             return false;
         }
 
-        public string WorkTheNextShift(int shiftNumber)
+        public string WorkTheNextShift()
         {
-            this.shiftNumber = shiftNumber;
-            string shiftReport = $"Report for shift #{shiftNumber}";
+            shiftNumber++;
+            string shiftReport = $"Report for shift #{shiftNumber}" + "\r\n";
             for (int i = 0; i < workers.Length; i++)
             {
-                int workerIndex = i + 1;
                 if (workers[i].DidYouFinish())
                 {
-                    shiftReport += $"\r\n Worker #{workerIndex} finished the job";
+                    shiftReport += $"Worker #{i + 1} finished the job" + "\r\n";
                 }
 
-                if (!String.IsNullOrEmpty(workers[i].CurrentJob))
+                if (String.IsNullOrEmpty(workers[i].CurrentJob))
                 {
-                    if (workers[i].ShiftsLeft == 1)
-                    {
-                        shiftReport += $"\r\n Worker #{workerIndex} will be done with '{workers[i].CurrentJob}' " +
-                            "after this shift";
-                    }
-                    else
-                    {
-                        shiftReport += $"\r\n Worker #{workerIndex} is doing '{workers[i].CurrentJob}' " +
-                            $"for {workers[i].ShiftsLeft} more shifts";
-                    }
+                    shiftReport += $"Worker #{i + 1} is not working" + "\r\n";
                 }
                 else
                 {
-                    shiftReport += $"\r\n Worker #{workerIndex} is not working";
+                    if (workers[i].ShiftsLeft > 0)
+                    {
+                        shiftReport += $"Worker #{i + 1} is doing '{workers[i].CurrentJob}' " +
+                            $"for {workers[i].ShiftsLeft} more shifts" + "\r\n";
+                    }
+                    else
+                    {
+                        shiftReport += $"Worker #{i + 1} will be done with '{workers[i].CurrentJob}' after this shift" + "\r\n";
+                    }
                 }
+                    
             }
             return shiftReport;
         }

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BeeHive
 {
-    class Worker
+    class Worker : Bee
     {
         public Worker(string[] jobsICanDo)
         {
@@ -54,6 +54,11 @@ namespace BeeHive
             }
             else
                 return false;
+        }
+
+        override public double HoneyConsumptionRate()
+        {
+
         }
     }
 }

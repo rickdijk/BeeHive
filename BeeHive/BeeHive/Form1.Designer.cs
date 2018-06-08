@@ -115,7 +115,7 @@
             this.report.Location = new System.Drawing.Point(34, 158);
             this.report.Multiline = true;
             this.report.Name = "report";
-            this.report.Size = new System.Drawing.Size(510, 20);
+            this.report.Size = new System.Drawing.Size(510, 280);
             this.report.TabIndex = 7;
             // 
             // Form1
